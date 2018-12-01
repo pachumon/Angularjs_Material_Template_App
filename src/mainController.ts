@@ -1,14 +1,21 @@
-namespace ContactManagerApp {
-  "use strict";
+export class mainComponent implements ng.IComponentOptions {
+  public bindings: any;
+  public controller: any;
+  public template: string;
+  public controllerAs: string;
 
-  export class mainController {
-    static $inject: Array<string> = [];
-    constructor() {}
-    vm = this;
-    message: string = "this is my message";
+  constructor() {
+    this.bindings = {};
+    this.template = "<div>content from component</div>";
+    this.controllerAs = "vm";
+    this.controller = mainController;
   }
+}
 
-  angular
-    .module("contactManagerApp")
-    .controller("mainController", mainController);
+class mainController implements ng.IComponentController {
+  constructor() {}
+
+  $onInit() {
+    console.log("invoked me");
+  }
 }

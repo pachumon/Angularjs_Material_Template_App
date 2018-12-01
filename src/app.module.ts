@@ -1,6 +1,6 @@
-namespace ContactManagerApp {
-  "use strict";
+import * as angular from "angular";
+import { mainComponent } from "./mainController";
 
-  angular.module("contactManagerApp", []);
-}
-
+angular
+  .module("contactManagerApp", [])
+  .component("mainComponent", new mainComponent());
