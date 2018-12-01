@@ -4,7 +4,8 @@
   "description": "a simple template using angularjs and angularjs material using npm libraries and liveserver",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "view:app": "live-server --browser=chrome",
+    "transpile:app":"tsc -w"    
   },
   "keywords": [
     "Angularjs",
@@ -19,5 +20,9 @@
     "angular-aria": "^1.7.5",
     "angular-material": "^1.1.10",
     "angular-messages": "^1.7.5"
+  },
+  "devDependencies": {
+    "@types/angular": "^1.6.51",
+    "@types/angular-material": "^1.1.61"
   }
 }
