@@ -1,4 +1,6 @@
 import mainTemplate from "./mainpage.component.html";
+import { IUserService } from "./userService";
+import { User } from "./models";
 
 export class mainPageComponent implements ng.IComponentOptions {
   public bindings: any;
@@ -14,13 +16,17 @@ export class mainPageComponent implements ng.IComponentOptions {
 }
 
 class mainPageController implements ng.IComponentController {
-  static $inject = ["$log", "$timeout"];
+  static $inject = ["$log", "$timeout", "UserService"];
   public name: string;
 
   constructor(
     private $log: ng.ILogService,
-    private $timeout: ng.ITimeoutService
+    private $timeout: ng.ITimeoutService,
+    private userService: IUserService
   ) {
+    this.userService.loadAllUsers().then((users: User[]) => {
+      console.log(users);
+    });
     this.name = "google";
   }
 
