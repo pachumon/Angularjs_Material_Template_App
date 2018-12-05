@@ -1,9 +1,9 @@
-import * as angular from "angular";
+import * as angularjs from "angular";
 import "angular-animate";
 import "angular-messages";
 import "angular-aria";
 import * as material from "angular-material";
-import "../node_modules/angular-material/layouts/angular-material.layouts.css"
+import "angular-material-icons"
 import { mainPageComponent } from "./mainpage.component";
 import { UserService } from "./userService";
 
@@ -11,7 +11,10 @@ if (module.hot) {
   module.hot.accept();
 }
 
-angular
-  .module("contactManagerApp", [material, "ngMessages"])
+angularjs
+  .module("contactManagerApp", [material, "ngMessages","ngMdIcons"])
   .component("mainPage", new mainPageComponent())
-  .service("UserService", UserService);
+  .service("UserService", UserService)
+  .config(($mdIconProvider:angular.material.IIconProvider)=>{
+    $mdIconProvider.icon("menu","../assets/svg/menu.svg",24);
+  })

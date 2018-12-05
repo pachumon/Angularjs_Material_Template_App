@@ -5,11 +5,11 @@ var basePath = __dirname;
 const config = {
   entry: {
     vendor: [
-      "jquery",
-      "bootstrap",           
-      "bootstrap/dist/css/bootstrap.css",
+      "jquery",      
       "font-awesome/css/font-awesome.css",
-      "./src/style.css"
+      "angular-material/angular-material.css",
+      "angular-material-icons/angular-material-icons.css",
+      "./assets/style.css"
     ],
     app: "./src/bootstrapper.ts"
   },

@@ -16,13 +16,14 @@ export class mainPageComponent implements ng.IComponentOptions {
 }
 
 class mainPageController implements ng.IComponentController {
-  static $inject = ["$log", "$timeout", "UserService"];
+  static $inject = ["$log", "$timeout", "UserService", "$mdSidenav"];
   public name: string;
 
   constructor(
     private $log: ng.ILogService,
     private $timeout: ng.ITimeoutService,
-    private userService: IUserService
+    private userService: IUserService,
+    private $mdSidenav: angular.material.ISidenavService
   ) {
     this.userService.loadAllUsers().then((users: User[]) => {
       console.log(users);
@@ -35,5 +36,12 @@ class mainPageController implements ng.IComponentController {
     this.$timeout(() => {
       this.$log.debug("printed thorugh $log inside $timeout");
     }, 2000);
+  }
+
+  users: User[] = [];
+
+  toggleSideNav(): void {
+    
+    this.$mdSidenav("left").toggle();
   }
 }

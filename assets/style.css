@@ -1,0 +1,35 @@
+body {
+  color: red;
+}
+
+html,
+body {
+  font-size: 20px;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+
+md-toolbar h1{
+  font-size: 1.250em;
+  font-weight: 400;
+  margin: auto;
+}
+
+md-toolbar mnd-toolbar-tools h1{
+  font-size: 1.250em;
+  font-weight: 400;
+}
+
+#content{
+  padding: 5px 40px 0 40px;
+}
