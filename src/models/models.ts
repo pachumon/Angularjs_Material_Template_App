@@ -8,6 +8,7 @@ export class CreateUser {
 }
 
 export class User {
+  data: User;
   constructor(
     public name: string,
     public avatar: string,

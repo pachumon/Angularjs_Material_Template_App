@@ -5,6 +5,7 @@ import "angular-aria";
 import * as material from "angular-material";
 import "angular-material-icons";
 import { mainPageComponent } from "./components/mainpage.component";
+import { sideNavComponent } from "./components/sideNav.component";
 import { UserService } from "./shared/services/userService";
 
 if (module.hot) {
@@ -14,6 +15,7 @@ if (module.hot) {
 angularjs
   .module("contactManagerApp", [material, "ngMessages", "ngMdIcons"])
   .component("mainPage", new mainPageComponent())
+  .component("sideNav",new sideNavComponent())
   .service("UserService", UserService)
   .config(
     (

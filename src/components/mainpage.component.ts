@@ -49,7 +49,9 @@ class mainPageController implements ng.IComponentController {
   }
 
   selectUser(user: User): void {
-    this.selected = user;
+    console.log(user);
+    this.selected = user.data;
+    
     this.tabIndex = 0;
     var sidenav = this.$mdSidenav("left");
     if (sidenav.isOpen()) {
