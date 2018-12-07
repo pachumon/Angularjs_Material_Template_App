@@ -1,4 +1,4 @@
-import { User } from "./models";
+import { User } from "../../models/models";
 
 export interface IUserService {
   loadAllUsers(): ng.IPromise<User[]>;

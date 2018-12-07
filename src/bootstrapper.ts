@@ -4,8 +4,8 @@ import "angular-messages";
 import "angular-aria";
 import * as material from "angular-material";
 import "angular-material-icons";
-import { mainPageComponent } from "./mainpage.component";
-import { UserService } from "./userService";
+import { mainPageComponent } from "./components/mainpage.component";
+import { UserService } from "./shared/services/userService";
 
 if (module.hot) {
   module.hot.accept();

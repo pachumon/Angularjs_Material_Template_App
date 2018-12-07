@@ -1,6 +1,6 @@
 import mainTemplate from "./mainpage.component.html";
-import { IUserService } from "./userService";
-import { User, Note } from "./models";
+import { IUserService } from "../shared/services/userService";
+import { User, Note } from "../models/models";
 
 export class mainPageComponent implements ng.IComponentOptions {
   public bindings: any;
