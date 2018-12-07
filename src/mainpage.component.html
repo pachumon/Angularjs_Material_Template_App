@@ -6,6 +6,39 @@
     md-whiteframe="4"
   >
     <md-toolbar> <h1>contacts</h1> </md-toolbar>
+    <div layout-padding>
+      <md-autocomplete
+        md-search-text="vm.searchText"
+        md-items="item in vm.users| filter:vm.searchText"
+        md-item-text="item.name"
+        md-min-length="3"
+        placeholder="filter"
+      >
+        <md-item-template>
+          <span md-highlight-text="vm.searchText" md-highlight-flags="^i">
+            {{ item.name }}
+          </span>
+        </md-item-template>
+        <md-not-found>
+          No user matching "{{ vm.searchText }}" were found
+        </md-not-found>
+      </md-autocomplete>
+    </div>
+    <md-content>
+      <md-list>
+        <md-list-item
+          ng-repeat="user in vm.users|filter:vm.searchText | orderBy:'name'"
+        >
+          <md-button
+            ng-click="vm.selectUser(user)"
+            ng-class="{'selected':user===vm.selected}"
+          >
+            <md-icon md-svg-icon="{{user.avatar}}" class="avatar"></md-icon>
+            {{ user.name }}
+          </md-button>
+        </md-list-item>
+      </md-list>
+    </md-content>
   </md-sidenav>
   <div layout="column" flex>
     <md-toolbar class="md-hue-2">
@@ -15,12 +48,49 @@
           hide-gt-sm
           ng-click="vm.toggleSideNav()"
         >
-          <md-icon md-svg-icon="../assets/svg/menu.svg"></md-icon>
+          <md-icon md-svg-icon="menu"></md-icon>
         </md-button>
 
         <h2 flex md-truncate>Toolbar with Disabled/Enabled Icon Buttons</h2>
       </div>
     </md-toolbar>
-    <md-content flex id="content"> main content </md-content>
+    <md-content flex id="content">
+      <div>
+        <md-icon md-svg-icon="{{vm.selected.avatar}}" class="avatar"></md-icon>
+        <h2>{{ vm.selected.name }}</h2>
+      </div>
+      <md-tabs
+        md-dynamic-height=""
+        md-stretch-tabs="always"
+        md-selected="vm.tabIndex"
+      >
+        <md-tab label="Bio">
+          <div>
+            <p>{{ vm.selected.bio }}</p>
+          </div>
+        </md-tab>
+        <md-tab label="Notes">
+          <div>
+            <p ng-if="!vm.selected.notes.length">
+              no notes for {{ vm.selected.name }} , yet.
+            </p>
+            <md-content>
+              <md-card
+                ng-repeat="note in vm.selected.notes | orderBy:'-date':true"
+              >
+                <md-card-content>
+                  <h3>{{ note.title }}</h3>
+                  <p>{{ note.date | date: "MM/dd/yyyy" }}</p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                  <md-button ng-click="vm.removeNote(note)">Remove</md-button>
+                </md-card-actions>
+              </md-card>
+            </md-content>
+          </div>
+        </md-tab>
+      </md-tabs>
+      
+    </md-content>
   </div>
 </div>

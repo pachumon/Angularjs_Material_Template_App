@@ -1,6 +1,6 @@
 import mainTemplate from "./mainpage.component.html";
 import { IUserService } from "./userService";
-import { User } from "./models";
+import { User, Note } from "./models";
 
 export class mainPageComponent implements ng.IComponentOptions {
   public bindings: any;
@@ -16,32 +16,49 @@ export class mainPageComponent implements ng.IComponentOptions {
 }
 
 class mainPageController implements ng.IComponentController {
-  static $inject = ["$log", "$timeout", "UserService", "$mdSidenav"];
-  public name: string;
+  static $inject = [
+    "$log",
+    "$timeout",
+    "UserService",
+    "$mdSidenav",
+    "$mdToast"
+  ];
 
   constructor(
     private $log: ng.ILogService,
     private $timeout: ng.ITimeoutService,
     private userService: IUserService,
-    private $mdSidenav: angular.material.ISidenavService
-  ) {
-    this.userService.loadAllUsers().then((users: User[]) => {
-      console.log(users);
-    });
-    this.name = "google";
-  }
+    private $mdSidenav: angular.material.ISidenavService,
+    private $mdToast: angular.material.IToastService
+  ) {}
 
   $onInit() {
-    console.log("invoked me");
-    this.$timeout(() => {
-      this.$log.debug("printed thorugh $log inside $timeout");
-    }, 2000);
+    this.userService.loadAllUsers().then((users: User[]) => {
+      console.log(users);
+      this.users = users;
+      this.selected = users[0];
+    });
   }
 
   users: User[] = [];
-
+  selected: User = null;
+  searchtext: string = "";
+  tabIndex: number = 0;
   toggleSideNav(): void {
-    
     this.$mdSidenav("left").toggle();
+  }
+
+  selectUser(user: User): void {
+    this.selected = user;
+    this.tabIndex = 0;
+    var sidenav = this.$mdSidenav("left");
+    if (sidenav.isOpen()) {
+      sidenav.close();
+    }
+  }
+
+  removeNote(note: Note) {
+    var foundIndex = this.selected.notes.indexOf(note);
+    this.selected.notes.splice(foundIndex, 1);
   }
 }
