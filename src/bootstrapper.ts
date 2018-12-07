@@ -7,6 +7,7 @@ import "angular-material-icons";
 import { mainPageComponent } from "./components/mainpage.component";
 import { sideNavComponent } from "./components/sideNav.component";
 import { UserService } from "./shared/services/userService";
+import { toolBarComponent } from "./components/toolBar.component";
 
 if (module.hot) {
   module.hot.accept();
@@ -16,6 +17,7 @@ angularjs
   .module("contactManagerApp", [material, "ngMessages", "ngMdIcons"])
   .component("mainPage", new mainPageComponent())
   .component("sideNav",new sideNavComponent())
+  .component("toolBar",new toolBarComponent())
   .service("UserService", UserService)
   .config(
     (

@@ -6,19 +6,7 @@
   select-user='vm.selectUser($event)'
   ></side-nav>
   <div layout="column" flex>
-    <md-toolbar class="md-hue-2">
-      <div class="md-toolbar-tools">
-        <md-button
-          class="md-icon-button"
-          hide-gt-sm
-          ng-click="vm.toggleSideNav()"
-        >
-          <md-icon md-svg-icon="menu"></md-icon>
-        </md-button>
-
-        <h2 flex md-truncate>Toolbar with Disabled/Enabled Icon Buttons</h2>
-      </div>
-    </md-toolbar>
+   <tool-bar toggle-side-nav='vm.toggleSideNav()'></tool-bar>
     <md-content flex id="content">
       <div>
         <md-icon md-svg-icon="{{vm.selected.avatar}}" class="avatar"></md-icon>
